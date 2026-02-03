@@ -63,14 +63,6 @@ class OkxRestClient:
             ) as resp:
                 return await resp.json()
 
-    async def get_positions(self, instrument_type: str = "SWAP") -> Dict:
-        path = f"/api/v5/account/positions?instType={instrument_type}"
-        return await self._request("GET", path)
-
-    async def get_latest_ticker(self, instrument_id: str) -> Dict:
-        path = f"/api/v5/market/ticker?instId={instrument_id}"
-        return await self._request("GET", path)
-
     async def place_order(self, order: OrderRequest) -> Dict:
         payload = {
             "instId": order.instrument_id,
